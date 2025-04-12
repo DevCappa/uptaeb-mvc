@@ -1,0 +1,2 @@
+# Este archivo asegura que el directorio 'logs' sea rastreado por Git
+# y ayuda a que las herramientas lo creen si no existe. 

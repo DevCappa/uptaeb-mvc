@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si el archivo o directorio solicitado existe dentro de /public, sírvelo directamente.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Si no, redirige la solicitud a public/index.php para que PHP la maneje.
+    RewriteRule ^ index.php [L,QSA]
+</IfModule> 

@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Bloquear acceso directo a directorios sensibles
+    RewriteRule ^(app|bin|config|database|logs|routes|vendor)(/|$) - [F,L]
+
+    # Si la solicitud ya es para /public, no hagas nada más aquí.
+    RewriteRule ^public/ - [L]
+
+    # Reescribe explícitamente la solicitud raíz ("/") a public/
+    RewriteRule ^$ public/ [L]
+
+    # Si la solicitud NO es para un archivo o directorio existente en la RAÍZ,
+    # y NO es la solicitud raíz (ya manejada arriba),
+    # y NO es uno de los directorios bloqueados arriba,
+    # reescríbela para que apunte al mismo recurso DENTRO de /public.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)$ public/$1 [L]
+</IfModule>
